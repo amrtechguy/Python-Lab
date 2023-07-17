@@ -48,3 +48,23 @@ def exit_program():
     print('Hi, I\'m Amr!')
     exit()
     print('I\'m a tech guy.')
+
+# Infinite Loop
+def while_loop():
+    while True:
+        command = input('> ')
+        if(command == 'exit'):
+            print('Goodbye!')
+            break
+        elif(command == 'help'):
+            print('This is Help Page.exit')
+        else:
+            print('This command is not recognized!')
+
+# Definite loop
+def for_loop():
+    for num in [1, 2, 3, 4, 5] :
+        print('Number:', num)
+    print('Done!')
+
+for_loop()
