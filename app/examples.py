@@ -133,5 +133,41 @@ def print_file_content(file_name):
         print(line_number, line.rstrip().upper())
         line_number += 1
 
+def extract_domains(file_name):
+    try:
+        fhandle = open(file_name)
+    except:
+        print('Cannot open the file!')
+        quit()
 
-print_file_content('poem.txt')
+    domains = fhandle.read().split()
+    print('Domains:', len(domains))
+    for domain in domains:
+        print(domain.lstrip('.'))
+
+def strip_symbols(text):
+    symbols = ['.', ',', '\'', '!', '?']
+    stripped_text = ''
+    for char in text:
+        if char in symbols:
+            stripped_text += ' '
+        stripped_text += char
+    return stripped_text
+
+def group_duplicates(text_file):
+    try:
+        fhandle = open(text_file)
+    except:
+        print('Cannot open the file!')
+        quit()
+
+    words = strip_symbols(fhandle.read()).lower().split()
+
+    words_group = {}
+    for word in words:
+        words_group[word] = words_group.get(word, 0) + 1 
+
+    print(len(words_group), words_group)
+
+
+group_duplicates('google_domains.txt')

@@ -97,5 +97,67 @@ def files_handling():
             print(line_number, line.rstrip())
         line_number += 1
 
+# Data structure: List
+def ds_list():
+    value = None # Has no length
+    random_data = [33, 'Amr Hassan', 10.00, ['SWE', 'CS']] # Lists can store different data types
+
+    text = 'version = 1.0'
+    # text[0] = 'V' # str is immutable -> cannot be changed
+    # print(text)
+
+    nums = [1, 200, 33, -5, 0]
+    # nums[0] = 100
+    # print(nums)
+
+    # print(len(text), len(nums))
+
+    range_nums = range(5, 10, 2)
+    # for num in range_nums:
+    #     print(num)
+
+    # rand_nums = list() # Create an empty list
+    # rand_nums = [33, 15, 0, 1]
+    # rand_nums.append(70)
+    # rand_nums.insert(1, 5)
+    # rand_nums.remove(5)
+    # rand_nums.reverse()
+    # rand_nums.sort()
+    # print(rand_nums)
+
+    config_rule = 'safe-mode = true'
+    # print(config_rule.split('=').pop().strip())
+
+    email_header = 'From amr@abc.de.fg Tue Jul 18 06:24 2023'
+    print(email_header.split()[1].split('@')[1])
+
+# Data structure: Dictionary
+def ds_dictionary():
+    user = dict()
+    user['name'] = 'Amr Hassan'
+    user['country'] = 'Egypt'
+    
+    configs = {'ver': '1.0', 'safe_mode': False}
+
+    persons = {101: 'Amr Hassan', 880: 'Someomne'}
+
+    print(persons.get(101))
+    print(persons.keys())
+    print(persons.values())
+    print(persons.items())
+
+    for key,value in persons.items():
+        print(key, value)
+
+# Data structure: Tuple
+def ds_tuple():
+    tpl = (100, 2, 200)
+    
+    roles = ('Software Engineer', 'Manager', 'Office boy')
+
+    (x, y, z) = roles
+
+    print(x)
+
 # Testing Area
-files_handling()
+ds_tuple()
