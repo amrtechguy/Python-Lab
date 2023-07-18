@@ -55,7 +55,7 @@ def ex_2():
     rate = input('Enter your rate: ')
     print(compute_pay(hours, rate))
 
-# get_max
+# get max number
 def get_max(nums):
     max_num = nums[0]
     for num in nums:
@@ -63,5 +63,75 @@ def get_max(nums):
             max_num = num
     return max_num
 
-# Working space
-print(get_max([-10, -2, -3, -4, -5]))
+# get total of numbers
+def get_total(nums):
+    total = 0
+    for num in nums:
+        total += num
+    return total
+
+# get count of array items
+def get_count(arr):
+    count = 0
+    for item in arr:
+        count += 1
+    return count
+
+# read_numbers
+def read_nums():
+    nums = []
+    while True:
+        line = input('> ')
+        if line == 'done' :
+            total = get_total(nums)
+            count = get_count(nums)
+            average = total / count
+            print('[Results]')
+            print('Total:', total)
+            print('Count:', count)
+            print('Average:', average)
+            break
+        try:
+            num = float(line)        
+        except:
+            print('Invalid number!')
+            continue
+        nums.append(num)
+    print(nums)
+
+def get_domain_from_text(text = '') :
+    start_pos = text.find('@') + 1
+    end_pos = text.find(' ', start_pos)
+    # pointer = start_pos
+    # while text[pointer] != ' ':
+    #     pointer += 1
+    print(text[start_pos:end_pos])
+
+# get_domain_from_text('From amr@abc.de.fg Mon Jul 17 8:00:01 2023')
+
+def extract_value(text = '') :
+    start_pos = text.find(':') + 1
+    sliced_str = text[start_pos:]
+    stripped_str = sliced_str.strip()
+    try:
+        value = float(stripped_str)
+    except:
+        value = stripped_str
+    return value
+
+# print(extract_value('X-DSPAM-Confidence: 0.8475 '))
+
+def print_file_content(file_name):
+    try:
+        fhandle = open(file_name, 'r')
+    except:
+        print('File cannot be open!')
+        quit()
+
+    line_number = 1
+    for line in fhandle:
+        print(line_number, line.rstrip().upper())
+        line_number += 1
+
+
+print_file_content('poem.txt')

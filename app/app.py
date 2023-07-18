@@ -1,8 +1,10 @@
 # Data Types
 def data_types():
-    print((31)) # int
+    print(type(31)) # int
     print(type(31.6)) # float
     print(type('Amr')) # str
+    print(type(True)) # bool
+    print(type(None)) # NoneType
 
 # Type Casting
 def type_casting():
@@ -11,10 +13,13 @@ def type_casting():
     print(type(float(100))) # Casting int to float
     print(int(99.50)) # The fraction is removed when casting float to int
 
-# On division output is always float
-def operators():
-    print('# On division output is always float')
-    print('8/2 =',8/2)
+# Operators
+# def operators():
+#     print('a' == 'A')
+#     print(1 == 1.0)
+#     print('a' is 'A') # Means identical to. (1 is 1.0 -> False)
+#     print('a' is not 'A') # Means not identical to. (1 is not 1.0 -> True)
+#     print(8/2) # Division results float
 
 # Error handling try/except
 def error_handling():
@@ -43,7 +48,7 @@ def conditionals():
         print('Sorry, your ID is not acceptable!')
 
 # Exit the program
-# exit() === quit()
+# exit() == quit()
 def exit_program():
     print('Hi, I\'m Amr!')
     exit()
@@ -67,4 +72,30 @@ def for_loop():
         print('Number:', num)
     print('Done!')
 
-for_loop()
+# Strings
+def strings():
+    line = 'Hello,' # str is an array of characters
+    line += ' Amr!' # Added value must be type str
+    print(line[0]) # Access the char at index 0
+    print(line[-1]) # Access a char from the end
+    print(line[0:5]) # Slice a string from index 0 up to index 5 (5 is not included)
+    print(line[:])
+    print(line[:5])
+    print(line[7:])
+    print(len(line)) # len() -> returns the length of a string
+    print('Amr' in line) # Using in as a logical operator
+    print(line.lower())
+    # print(dir(line)) # Display supported methods for the string class
+    print(type(u'عمرو'))
+
+# Files Handling
+def files_handling():
+    fhandle = open('poem.txt', 'r')
+    line_number = 1
+    for line in fhandle:
+        if line.startswith('And'):
+            print(line_number, line.rstrip())
+        line_number += 1
+
+# Testing Area
+files_handling()
