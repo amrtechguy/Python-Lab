@@ -1,3 +1,7 @@
+import re
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+
 # Calculate the work pay
 def ex_1():
     # get the hours
@@ -151,6 +155,7 @@ def strip_symbols(text):
     for char in text:
         if char in symbols:
             stripped_text += ' '
+            continue
         stripped_text += char
     return stripped_text
 
@@ -170,4 +175,71 @@ def group_duplicates(text_file):
     print(len(words_group), words_group)
 
 
-group_duplicates('google_domains.txt')
+def get_most_common_words(file_name, max = 1) :
+    # Open the file
+    try:
+        fhandle = open(file_name, 'r')
+    except:
+        print('Cannot open the file!')
+        quit()
+
+    words = strip_symbols(fhandle.read()).split()
+
+    # Store each word with its iteration count in a dictionary
+    words_count = {}
+    for word in words :
+        words_count[word] = words_count.get(word, 0) + 1
+    
+    # Loop through the dict and store tuples of (value, key) in a list
+    words_list = []
+    for key,value in words_count.items() :
+        words_list.append((value, key))
+
+    # Sort the list in descending order
+    sorted_list = sorted(words_list, reverse=True)
+
+    # Get the first 10 tuples
+    # Print the top words
+    for count, word in sorted_list[:max] :
+        print(word, count)
+
+def extract_domain_names(text) :
+    return re.findall('\S+@(\S+)', text)
+
+# print(extract_domain_names('From amr@abc.de.fg Tue Jul 18 06:24 2023 Jack@abc.xyz'))
+
+def extract_spam_rate(text) :
+    return re.findall('X-DSPAM-Confidence: ([0-9.]+)', text)
+    
+# print(extract_spam_rate('X-DSPAM-Confidence: 0.8475'))
+
+def extract_links_from_page(page_url):
+    # Open the url
+    fhandle = urllib.request.urlopen(page_url)
+
+    # Find all urls using Regex
+    urls = {}
+    for line in fhandle:
+        line = line.decode().strip()
+        found_urls = re.findall('"(\S+://\S+)"', line)
+        if len(found_urls) > 0:
+            # Store the urls
+            for url in found_urls:
+                urls[url] = urls.get(url, 0) + 1
+    return urls
+
+# urls = extract_links_from_page('https://www.yahoo.com')
+# for url in urls:
+#     print(url)
+
+def bs_example():
+    url = 'https://www.yahoo.com'
+    data = urllib.request.urlopen(url).read()
+    soup = BeautifulSoup(data, 'html.parser')
+    
+    tags = soup('a')
+    for tag in tags:
+        print(tag.get('href', None))
+
+bs_example()
+
